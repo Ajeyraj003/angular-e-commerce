@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+ 
+     
+      
+
+      
+<div class="form-control">
+  <h1>signup</h1>
+          <form [formGroup]="form"> 
+        
+            <label for="name"><i class='bx bxs-user-circle'></i></label>
+            <input type="text" formControlName="name" placeholder="first name"><br><br>
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="invalid-feedback">
+            <div class=valid *ngIf="name.errors?.['required']">Enter ur firstname</div>
+            </div>
+
+            <label for="Last name"><i class='bx bx-user'></i></label>
+            <input type="text" formControlName="lastname" placeholder="last name"><br><br>
+            <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" class="invalid-feedback">
+            <div class=valid *ngIf="lastname.errors?.['required'] || lastname.errors.maxlength  || lastname.errors.minlength || lastname  .errors.pattern">Enter ur lastname</div>
+            </div>
+
+            <label for="email id"><i class='bx bxl-gmail' ></i></label>
+            <input type="emailid" formControlName="emailid" placeholder=" email id"><br><br>
+            <div *ngIf="emailid.invalid && (emailid.dirty || emailid.touched)" class="invalid-feedback">
+            <div class=valid *ngIf="emailid.errors?.['required']"> Enter ur e-mail id</div>
+            <div *ngIf="!emailid.errors?.['required'] && emailid.errors?.['emailValidator'] ||emailid.errors.pattern">please enter a valid mail id </div>
+            </div>
+
+            <label for="password"><i class='bx bxs-lock-open' ></i></label>
+            <input  type="password"  formControlName="password" placeholder="password"><br><br> 
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="invalid-feedback">
+            <div class=valid *ngIf="password.errors?.['required']">enter ur password</div>
+            </div>
+
+            <label for="confirm password"><i class='bx bxs-lock' ></i></label>
+            <input  type="password" formControlName="confirmpassword" placeholder=" confirm password"><br><br>
+            
+            <div class=valid *ngIf="form.hasError('notSame')">password deos not match.</div>
+            
+
+          <button (click)="onSubmit()">submit</button>
+          <p>Already a member?<span><a routerLink="/login">LogIn</a></span></p>
+
+        </form> 
+      </div>
+
+  
+</body>
+</html>
